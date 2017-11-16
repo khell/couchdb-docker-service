@@ -1,9 +1,10 @@
-# Credit: this work is heavily based on https://github.com/apache/couchdb-docker/blob/master/2.0.0/Dockerfile
+# CouchDB Autocluster
+# Version 1.0.0
 
 # We use ubuntu instead of debian:jessie as we want Erlang >= 18 for CouchDB SSL support
-FROM ubuntu
+FROM ubuntu:16.04
 
-MAINTAINER Geoff Cox redgeoff@gmail.com
+MAINTAINER Cameron Yan git@khell.org
 
 # Update distro to get recent list of packages
 RUN apt-get update -y -qq
@@ -15,7 +16,10 @@ RUN apt-get --no-install-recommends -y install \
             libicu55 \
             libmozjs185-1.0 \
             openssl \
-            curl
+            curl \
+            iproute2 \
+            iputils-ping \
+            jq
 
 # Update package lists
 RUN apt-get update -y -qq
@@ -89,5 +93,6 @@ COPY set-up-process.sh /set-up-process.sh
 COPY wait-for-host.sh /wait-for-host.sh
 COPY wait-for-it.sh /wait-for-it.sh
 COPY wrapper.sh /wrapper.sh
+COPY setup-hosts.sh /setup-hosts.sh
 
 CMD ["/wrapper.sh"]
