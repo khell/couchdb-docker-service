@@ -94,5 +94,6 @@ COPY wait-for-host.sh /wait-for-host.sh
 COPY wait-for-it.sh /wait-for-it.sh
 COPY wrapper.sh /wrapper.sh
 COPY setup-hosts.sh /setup-hosts.sh
+COPY copy-config.sh /copy-config.sh
 
 CMD ["/wrapper.sh"]

@@ -10,6 +10,9 @@
 echo "Starting the host discovery via Consul..."
 /setup-hosts.sh
 
+echo "Copy configuration files from shared volume"
+/copy-config.sh
+
 # Start the couchdb process
 echo "Starting CouchDB..."
 /couchdb-process.sh &
